@@ -10,6 +10,46 @@ No security yet simply for testing
 
 ##Accessible Routes
 
+##Login School
+
+Function for logging in a school or sponsor with an account
+
+<table>
+<tr><td>Route</td> <td>/loginschool</td></tr>
+<tr><td>HTML Method</td> <td>POST</td></tr>
+<tr><td>req.body</td> <td>{
+    "username":"CESMARIKINA",
+    "password":"123456"}</td></tr>
+<tr><td>Successful response(if account is school)</td> <td>Status (200) {
+  "result": {
+    "username": "CESMARIKINA",
+    "password": "123456",
+    "address": "J.MOLINA ST CONCEPCION UNO MARIKINA CITY",
+    "email": "cesmarikina@gmail.com",
+    "_id": "5718890de5f0d9832366a394",
+    "__v": 0,
+    "students": []
+  },
+  "accounttype": "School"
+}</td></tr>
+<tr><td>Successful response(if account is sponsor)</td> <td>Status (200) {
+  "result": {
+    "username": "nekomarino",
+    "password": "123456",
+    "firstname": "Ian Danico",
+    "middlename": "David",
+    "lastname": "Marino",
+    "address": "Marikina City",
+    "email": "nekomarino@gmail.com",
+    "_id": "571889e92be2551824f6a8f8",
+    "__v": 0,
+    "students": []
+  },
+  "accounttype": "Sponsor"
+}</td></tr>
+<tr><td>Failed response</td> <td>Fail Login (Status 400)</td></tr>
+</table>
+
 ##Add School
 Function for adding school (Functions only for testing)
 
@@ -24,26 +64,6 @@ Function for adding school (Functions only for testing)
 }</td></tr>
 <tr><td>Successful response</td> <td>Success Sending New School!</td></tr>
 <tr><td>Failed response</td> <td>Fail Register (Status 400)</td></tr>
-</table>
-
-##Login School
-
-Function for logging in a school with an account
-
-<table>
-<tr><td>Route</td> <td>/loginschool</td></tr>
-<tr><td>HTML Method</td> <td>POST</td></tr>
-<tr><td>req.body</td> <td>{
-    "username":"CESMARIKINA",
-    "password":"123456"}</td></tr>
-<tr><td>Successful response</td> <td>Status (200) {
-  "username": "CESMARIKINA",
-  "password": "123456",
-  "address": "J.MOLINA ST CONCEPCION UNO MARIKINA CITY",
-  "_id": "57183f69659f8a6b131bb81c",
-  "__v": 0
-}</td></tr>
-<tr><td>Failed response</td> <td>Fail Login (Status 400)</td></tr>
 </table>
 
 ##Add Sponsor
@@ -63,28 +83,4 @@ Function for adding a sponsor
 }</td></tr>
 <tr><td>Successful response</td> <td>Success Sending New Sponsor!</td></tr>
 <tr><td>Failed response</td> <td>Fail Register (Status 400)</td></tr>
-</table>
-
-##Login Sponsor
-
-Function for adding a sponsor
-
-<table>
-<tr><td>Route</td> <td>/loginsponsor</td></tr>
-<tr><td>HTML Method</td> <td>POST</td></tr>
-<tr><td>req.body</td> <td>{
-    "username":"nekomarino",
-    "password":"123456"
-}</td></tr>
-<tr><td>Successful response</td> <td>(Status 200) {
-  "username": "nekomarino",
-  "password": "123456",
-  "firstname": "Ian Danico",
-  "middlename": "David",
-  "lastname": "Marino",
-  "address": "Marikina City",
-  "_id": "571843ccf9dda78c15a09310",
-  "__v": 0
-}</td></tr>
-<tr><td>Failed response</td> <td>Fail Login (Status 400)</td></tr>
 </table>
