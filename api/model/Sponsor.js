@@ -5,6 +5,9 @@ var Sponsor = mongoose.Schema({
   firstname:{type: String, require:true},
   middlename:{type: String},
   lastname:{type: String, require:true},
-  address:{type: String, require:true}
+  suffix: {type: String, required: false},
+  address:{type: String, require:true},
+  email: {type: String, required: true, unique : true},
+  students: [{type:mongoose.Schema.Types.ObjectId}]
 });
 module.exports = mongoose.model('Sponsor',Sponsor);
