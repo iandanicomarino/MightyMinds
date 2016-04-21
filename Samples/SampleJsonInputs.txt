@@ -1,0 +1,53 @@
+<......................///\\\.......................>
+for registering sponsors
+{
+            "username":"nekomarino",
+            "password":"123456",
+            "firstname":"Ian Danico",
+            "middlename":"David",
+            "lastname":"Marino",
+            "address":"Marikina City"
+}
+returns
+confirmation "Success in adding school"
+<......................\\\///.......................>
+
+
+
+
+
+<......................///\\\.......................>
+for logging in of school
+{
+    "username":"CESMARIKINA",
+    "password":"123456"
+}
+returns,
+{
+  "username": "CESMARIKINA",
+  "password": "123456",
+  "address": "J.MOLINA ST CONCEPCION UNO MARIKINA CITY",
+  "_id": "57183f69659f8a6b131bb81c",
+  "__v": 0
+}
+<......................\\\///.......................>
+
+
+
+
+
+
+
+
+
+<......................///\\\.......................>
+for adding school
+{
+    "username":"CESMARIKINA",
+    "password":"123456",
+    "schooolname":"Concepcion Elementary School",
+    "address":"J.MOLINA ST CONCEPCION UNO MARIKINA CITY"
+}
+returns
+confirmation "Success in adding school"
+<......................\\\///.......................>
