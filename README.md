@@ -1,30 +1,90 @@
- Address Book
-**Address Book using MEAN Stack**
+ MightyMinds API
+**API MEAN Stack**
 
-This program has the functionality of adding Names and then specific addresses of each name. You also have the capability to delete the name and this will also delete the associated address
-![alt tag](http://i.imgur.com/C1yt0Cl.png)
-![alt tag](http://i.imgur.com/8mfrZcX.png)
-![alt tag](http://i.imgur.com/bAHHzxd.png)
-
+This program is under development and currently has the capbility to add and login schools and also add and login sponsors 
 ##Technology Used
 MEAN Stack (MongoDB, Express, Angular, Nodejs)
 
-##Pre-requisites to run
-You would need to install MongoDB and Nodejs in your workstation
-[MongoDB Website](https://www.mongodb.org/ "MongoDB Homepage")
-[NodeJS Website](https://nodejs.org/en/ "NodeJS Homepage")
+#Current Limitations
+No security yet simply for testing
 
-##How to run
-Upon installation of the pre-requsites simply clone this package using
-```
-git clone https://github.com/iandanicomarino/addressbook.git
-```
-cd into the directory and type in the terminal
-```
-node server.js
-```
-Once running you can go to [localhost:1235](localhost:1235) and be able to run the whole app
+##Accessible Routes
 
-##Limitations
-1. No editing of Address upon saving a particular address for a specific name
-2. No editing of names
+##Add School
+Function for adding school (Functions only for testing)
+
+<table>
+<tr><td>Route</td> <td>/addschool</td></tr>
+<tr><td>HTML Method</td> <td>POST</td></tr>
+<tr><td>req.body</td> <td>{
+    "username":"CESMARIKINA",
+    "password":"123456",
+    "schooolname":"Concepcion Elementary School",
+    "address":"J.MOLINA ST CONCEPCION UNO MARIKINA CITY"
+}</td></tr>
+<tr><td>Successful response</td> <td>Success Sending New School!</td></tr>
+<tr><td>Failed response</td> <td>Fail Register (Status 400)</td></tr>
+</table>
+
+##Login School
+
+Function for logging in a school with an account
+
+<table>
+<tr><td>Route</td> <td>/loginschool</td></tr>
+<tr><td>HTML Method</td> <td>POST</td></tr>
+<tr><td>req.body</td> <td>{
+    "username":"CESMARIKINA",
+    "password":"123456"}</td></tr>
+<tr><td>Successful response</td> <td>Status (200) {
+  "username": "CESMARIKINA",
+  "password": "123456",
+  "address": "J.MOLINA ST CONCEPCION UNO MARIKINA CITY",
+  "_id": "57183f69659f8a6b131bb81c",
+  "__v": 0
+}</td></tr>
+<tr><td>Failed response</td> <td>Fail Login (Status 400)</td></tr>
+</table>
+
+##Add Sponsor
+
+Function for adding a sponsor
+
+<table>
+<tr><td>Route</td> <td>/registersponsor</td></tr>
+<tr><td>HTML Method</td> <td>POST</td></tr>
+<tr><td>req.body</td> <td>{
+            "username":"nekomarino",
+            "password":"123456",
+            "firstname":"Ian Danico",
+            "middlename":"David",
+            "lastname":"Marino",
+            "address":"Marikina City"
+}</td></tr>
+<tr><td>Successful response</td> <td>Success Sending New Sponsor!</td></tr>
+<tr><td>Failed response</td> <td>Fail Register (Status 400)</td></tr>
+</table>
+
+##Login Sponsor
+
+Function for adding a sponsor
+
+<table>
+<tr><td>Route</td> <td>/loginsponsor</td></tr>
+<tr><td>HTML Method</td> <td>POST</td></tr>
+<tr><td>req.body</td> <td>{
+    "username":"nekomarino",
+    "password":"123456"
+}</td></tr>
+<tr><td>Successful response</td> <td>(Status 200) {
+  "username": "nekomarino",
+  "password": "123456",
+  "firstname": "Ian Danico",
+  "middlename": "David",
+  "lastname": "Marino",
+  "address": "Marikina City",
+  "_id": "571843ccf9dda78c15a09310",
+  "__v": 0
+}</td></tr>
+<tr><td>Failed response</td> <td>Fail Login (Status 400)</td></tr>
+</table>
