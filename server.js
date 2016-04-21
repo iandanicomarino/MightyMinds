@@ -14,12 +14,14 @@ var params=
     School      :require ('./api/model/School.js'),
     Sponsor     :require ('./api/model/Sponsor.js'),
     Student     :require ('./api/model/Student.js'),
+    Account     :require ('./api/model/Account.js'),
     router      :router
 }
 app.use(express.static(__dirname+"/public"));
 app.use(bodyparser.json());
 app.use('/',require('./api/routers/SchoolRouter.js')(params));
 app.use('/',require('./api/routers/SponsorRouter.js')(params));
+app.use('/',require('./api/routers/AccountRouter.js')(params));
 //server actions
 
 

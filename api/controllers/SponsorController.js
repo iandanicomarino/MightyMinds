@@ -3,6 +3,7 @@ module.exports = function (params){
     var bodyparser  = params.bodyparser;
     var mongoose    = params.mongoose;
     var Sponsor     = params.Sponsor;
+    var Account     = params.Account;
     var controllers =[];
 
     controllers.register= function (req, res){
@@ -15,18 +16,15 @@ module.exports = function (params){
             address:req.body.address,
             email:req.body.email
         }
-        Sponsor(newSponsor).save(function (err, docs){
+        var newAccount = {
+            username:req.body.username,
+            password:req.body.password,
+            accounttype:"Sponsor"
+        }
+        Account(newAccount).save(function (err, docs){
             if(err){res.status(400).json(err);return;};
+            Sponsor(newSponsor).save();
             res.status(200).send("Success Registering New Sponsor!");
-        });
-    };
-    controllers.login= function (req, res){
-        var username=req.body.username;
-        var password=req.body.password;
-        console.log(req.body);
-        Sponsor.findOne({$and:[{username:username},{password:password}]}).exec(function (err,docs){
-            if(err ||!docs ){res.status(400).send("FAIL LOGIN");return;};
-            res.json(docs);
         });
     };
     return controllers;
