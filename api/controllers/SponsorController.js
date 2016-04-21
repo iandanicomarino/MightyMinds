@@ -12,7 +12,8 @@ module.exports = function (params){
             firstname:req.body.firstname,
             middlename:req.body.middlename,
             lastname:req.body.lastname,
-            address:req.body.address
+            address:req.body.address,
+            email:req.body.email
         }
         Sponsor(newSponsor).save(function (err, docs){
             if(err){res.status(400).json(err);return;};

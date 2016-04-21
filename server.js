@@ -13,6 +13,7 @@ var params=
     settings    :settings,
     School      :require ('./api/model/School.js'),
     Sponsor     :require ('./api/model/Sponsor.js'),
+    Student     :require ('./api/model/Student.js'),
     router      :router
 }
 app.use(express.static(__dirname+"/public"));
@@ -23,5 +24,6 @@ app.use('/',require('./api/routers/SponsorRouter.js')(params));
 
 
 app.listen(6443);
+
 console.log("server started: port 6443")
 //server init

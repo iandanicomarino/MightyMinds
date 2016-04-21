@@ -20,7 +20,8 @@ module.exports = function (params){
             username:req.body.username,
             password:req.body.password,
             schooolname:req.body.schoolname,
-            address:req.body.address
+            address:req.body.address,
+            email:req.body.email
         }
         School(newSchool).save(function (err,docs) {
             if(err){res.status(400).json(err);return;};
