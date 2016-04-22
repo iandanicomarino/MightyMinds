@@ -12,34 +12,6 @@ returns
 confirmation "Success in adding school"
 <......................\\\///.......................>
 
-
-
-
-
-<......................///\\\.......................>
-for logging in of school
-{
-    "username":"CESMARIKINA",
-    "password":"123456"
-}
-returns,
-{
-  "username": "CESMARIKINA",
-  "password": "123456",
-  "address": "J.MOLINA ST CONCEPCION UNO MARIKINA CITY",
-  "_id": "57183f69659f8a6b131bb81c",
-  "__v": 0
-}
-<......................\\\///.......................>
-
-
-
-
-
-
-
-
-
 <......................///\\\.......................>
 for adding school
 {
@@ -50,4 +22,21 @@ for adding school
 }
 returns
 confirmation "Success in adding school"
+<......................\\\///.......................>
+
+<......................///\\\.......................>
+
+{
+"firstname":"Test",
+"lastname" : "Student",
+"middlename": "A",
+"suffix":"",
+"address":"Test Address",
+"email":"testemail",
+"currentfunds": 0,
+"goal" :5000,
+"bio":"cool kid test said",
+"future": "Scientist",
+"currentschool": "datSchool"
+}
 <......................\\\///.......................>

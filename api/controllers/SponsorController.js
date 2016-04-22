@@ -3,7 +3,10 @@ module.exports = function (params){
     var bodyparser  = params.bodyparser;
     var mongoose    = params.mongoose;
     var Sponsor     = params.Sponsor;
+    var School      = params.School;
+    var Student      = params.Student;
     var Account     = params.Account;
+    var Transaction = params.Transaction;
     var controllers =[];
 
     controllers.register= function (req, res){
@@ -21,10 +24,46 @@ module.exports = function (params){
             password:req.body.password,
             accounttype:"Sponsor"
         }
-        Account(newAccount).save(function (err, docs){
+        Account(newAccount).save(function (err, account){
             if(err){res.status(400).json(err);return;};
-            Sponsor(newSponsor).save();
-            res.status(200).send("Success Registering New Sponsor!");
+            Sponsor(newSponsor).save(function(err,docs){
+                if(err){
+                    Account.findOneAndRemove({_id:account._id}).exec(function(err,doc){
+                        console.log(account._id);
+                        res.status(400).send("Duplicate Email on with Sponsor Account");
+                        return;
+                    });
+                }else{
+                    res.status(200).send("Success Registering New Sponsor!");
+                };
+            });
+
+        });
+    };
+    controllers.viewschools=function (req,res){
+        School.find({},{username:0,password:0}).exec(function (err, docs){
+            if (err) {res.status(400).send("No Available Schools");return;}
+            res.status(200).json(docs);
+        });
+    }
+    controllers.contribute=function(req,res){
+        var newTransaction= {
+            student:req.params.stdid,
+            sponsor:req.params.spnid,
+            amount:req.body.amount,
+            isanon:req.body.isanon
+        }
+        Transaction(newTransaction).save(function(err,transaction){
+            if (err) {res.json(err).status(400);return}
+            Student.findOneAndUpdate({_id:req.params.stdid},{$push:{transactions:transaction._id}})
+            .exec(function (err,docs){
+                Sponsor.findOneAndUpdate({_id:req.params.spnid},{$push:{transactions:transaction._id}})
+                .exec(function (err,docs){
+                    if(err)res.json(err);
+                    res.send("TRANSACTION DONE THANK YOU!");
+                })
+            });
+
         });
     };
     return controllers;

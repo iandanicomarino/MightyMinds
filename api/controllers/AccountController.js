@@ -1,6 +1,6 @@
 module.exports = function (params){
     var express     = params.express;
-    var paramsparser  = params.paramsparser;
+    var bodyparser  = params.bodyparser;
     var mongoose    = params.mongoose;
     var School      = params.School;
     var Sponsor     = params.Sponsor;

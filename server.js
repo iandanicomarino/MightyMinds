@@ -15,6 +15,7 @@ var params=
     Sponsor     :require ('./api/model/Sponsor.js'),
     Student     :require ('./api/model/Student.js'),
     Account     :require ('./api/model/Account.js'),
+    Transaction :require ('./api/model/Transaction.js'),
     router      :router
 }
 app.use(express.static(__dirname+"/public"));
