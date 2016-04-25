@@ -1,86 +1,148 @@
- MightyMinds API
+  
+#MightyMinds API
 **API MEAN Stack**
 
 This program is under development and currently has the capbility to add and login schools and also add and login sponsors 
 ##Technology Used
 MEAN Stack (MongoDB, Express, Angular, Nodejs)
 
-#Current Limitations
+##Current Limitations
+
 No security yet simply for testing
 
-##Accessible Routes
+###Accessible Routes
 
-##Login School
+Below are routes that are currently usable
+[*Login*](#Login-School-or-Sponsor)
+####Login School or Sponsor ####
 
-Function for logging in a school or sponsor with an account
+This would require the user's username and password
 
-<table>
-<tr><td>Route</td> <td>/loginschool</td></tr>
-<tr><td>HTML Method</td> <td>POST</td></tr>
-<tr><td>req.body</td> <td>{
-    "username":"CESMARIKINA",
-    "password":"123456"}</td></tr>
-<tr><td>Successful response(if account is school)</td> <td>Status (200) {
+| Option | Value |
+| - | - |
+| Route | /login |
+| Method | POST |
+| Params | none|
+| Post Data | JSON or JS Object |
+| Usage | /login |
+
+**Suggested Format :**
+
+```json
+  var data = {
+    "username":"4testing",
+    "password":"123456"
+}
+```
+
+#####Return Data
+```javascript
+//if account is school
   "result": {
-    "username": "CESMARIKINA",
-    "password": "123456",
-    "address": "J.MOLINA ST CONCEPCION UNO MARIKINA CITY",
-    "email": "cesmarikina@gmail.com",
-    "_id": "5718890de5f0d9832366a394",
     "__v": 0,
-    "students": []
+    "_id": "571d670ed0af74e60c17e4d2",
+    "address": "School1Address",
+    "email": "School1@email.com",
+    "password": "123456",
+    "username": "School1",
+    "students": [
+      "571d67ded0af74e60c17e4de",
+      "571d68c1d0af74e60c17e4e0",
+      "571d68cdd0af74e60c17e4e1"
+    ]
   },
   "accounttype": "School"
-}</td></tr>
-<tr><td>Successful response(if account is sponsor)</td> <td>Status (200) {
+}
+//if account is sponsor
+{
   "result": {
-    "username": "nekomarino",
-    "password": "123456",
-    "firstname": "Ian Danico",
-    "middlename": "David",
-    "lastname": "Marino",
-    "address": "Marikina City",
-    "email": "nekomarino@gmail.com",
-    "_id": "571889e92be2551824f6a8f8",
     "__v": 0,
-    "students": []
+    "_id": "571d7eeed0af74e60c17e4e9",
+    "address": "Marikina City",
+    "email": "sponsor1@email.com",
+    "firstname": "Spon",
+    "lastname": "Sor",
+    "middlename": "N",
+    "password": "123456",
+    "username": "Sponsor1",
+    "transactions": [
+      "571d811d8d49ad70179d8ab0",
+      "571d81228d49ad70179d8ab1"
+    ]
   },
   "accounttype": "Sponsor"
-}</td></tr>
-<tr><td>Failed response</td> <td>Fail Login (Status 400)</td></tr>
-</table>
+}
+//if invalid login
+FAIL LOGIN
+```
 
-##Add School
-Function for adding school (Functions only for testing)
+####Add School
 
-<table>
-<tr><td>Route</td> <td>/addschool</td></tr>
-<tr><td>HTML Method</td> <td>POST</td></tr>
-<tr><td>req.body</td> <td>{
-    "username":"CESMARIKINA",
+This would require the school's username and password
+
+| Option | Value |
+| - | - |
+| Route | /addschool|
+| Method | POST |
+| Params | none|
+| Post Data | JSON or JS Object |
+| Usage | /addschool |
+
+**Suggested Format :**
+
+```json
+{
+    "username":"School3",
     "password":"123456",
-    "schooolname":"Concepcion Elementary School",
-    "address":"J.MOLINA ST CONCEPCION UNO MARIKINA CITY"
-}</td></tr>
-<tr><td>Successful response</td> <td>Success Sending New School!</td></tr>
-<tr><td>Failed response</td> <td>Fail Register (Status 400)</td></tr>
-</table>
+    "schoolname":"School2",
+    "address":"School2Address",
+    "email":"School2@email.com"
+}
+```
 
-##Add Sponsor
+#####Return Data
+```javascript
+//if account was addedd successfully
+	Success Sending New School!
+//if account adding failed
+	Error message 
+// possible duplicate of email in either account table or school table
+Duplicate Email on Account
+```
 
-Function for adding a sponsor
+####Register Sponsor
 
-<table>
-<tr><td>Route</td> <td>/registersponsor</td></tr>
-<tr><td>HTML Method</td> <td>POST</td></tr>
-<tr><td>req.body</td> <td>{
-            "username":"nekomarino",
+This would require the sponsors's username and password
+
+| Option | Value |
+| - | - |
+| Route | /registersponsor|
+| Method | POST |
+| Params | none|
+| Post Data | JSON or JS Object |
+| Usage | /registersponsor |
+
+**Suggested Format :**
+
+```json
+{
+            "username":"Sponsor2",
             "password":"123456",
-            "firstname":"Ian Danico",
-            "middlename":"David",
-            "lastname":"Marino",
-            "address":"Marikina City"
-}</td></tr>
-<tr><td>Successful response</td> <td>Success Sending New Sponsor!</td></tr>
-<tr><td>Failed response</td> <td>Fail Register (Status 400)</td></tr>
-</table>
+            "firstname":"Spon",
+            "middlename":"N",
+            "lastname":"Sor",
+            "address":"Marikina City",
+            "email":"sponsor2@email.com"
+}
+```
+
+#####Return Data
+```javascript
+//if account was addedd successfully
+	Success Sending New Sponsor!
+//if account adding failed
+	Error message 
+// possible duplicate of email in either account table or sponsor table
+Duplicate Email on Account
+```
+
