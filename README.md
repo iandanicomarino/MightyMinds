@@ -1,8 +1,8 @@
   
 #MightyMinds API
-**API MEAN Stack**
 
-This program is under development and currently has the capbility to add and login schools and also add and login sponsors 
+This program is under development 
+
 ##Technology Used
 MEAN Stack (MongoDB, Express, Angular, Nodejs)
 
@@ -10,16 +10,19 @@ MEAN Stack (MongoDB, Express, Angular, Nodejs)
 
 No security yet simply for testing
 
-###Account Routes
+###Currently Available Routes
 
-Below are routes that are currently usable for account usage
 
-[*Login*](#login-school-or-Sponsor)
 
-[*Add School*](#add-school)
 
-[*Add Sponsor*](#register-sponsor)
 
+
+| School | Sponsor | Account |
+| --------- | --------- | ---------- |
+| [*Add Student*](#add-student) | &nbsp; | [*Login*](#login-school-or-Sponsor) |
+| [*Delete Student*](#delete-student) | &nbsp; | [*Add School*](#add-school)|
+| [*List Student*](#list-student) | &nbsp; | [*Add Sponsor*](#register-sponsor)|
+| [*Edit Student*](#edit-student) | &nbsp; | &nbsp; |
 
 ####Login School or Sponsor ####
 
@@ -295,7 +298,7 @@ This would require the student id to determine which student do you want to edit
 | Route | /school/editstudent/:id |
 | Method | POST |
 | Params | :id (for student id)  |
-| Post Data | none |
+| Post Data | JSON |
 | Usage | /school/editstudent/571d68c1d0af74e60c17e4e0 |
 
 **Suggested Format :**
