@@ -24,6 +24,10 @@ No security yet simply for testing
 | [*List Student*](#list-student) | &nbsp; | [*Add Sponsor*](#register-sponsor)|
 | [*Edit Student*](#edit-student) | &nbsp; | &nbsp; |
 
+#ROUTES LIST
+
+### Account Routes
+
 ####Login School or Sponsor ####
 
 This would require the user's username and password
@@ -321,26 +325,49 @@ This would require the student id to determine which student do you want to edit
 
 #####Return Data
 ```javascript
-//this returns the previous data
-{
-  "__v": 0,
-  "_id": "571d68c1d0af74e60c17e4e0",
-  "address": "student1Address",
-  "bio": "cool kid test2 said",
-  "currentfunds": 10000,
-  "currentschool": "dat2School",
-  "email": "student1@email.com",
-  "firstname": "Stu",
-  "future": "Scientist2",
-  "goal": 15000,
-  "lastname": "Ent1",
-  "middlename": "D",
-  "suffix": "",
-  "transactions": [
-    "571d811d8d49ad70179d8ab0",
-    "571d81228d49ad70179d8ab1"
-  ]
-}
-//if no student exists
-null
+[
+  {
+    "__v": 0,
+    "_id": "571d670ed0af74e60c17e4d2",
+    "address": "School1Address",
+    "email": "School1@email.com",
+    "students": [
+      "571d67ded0af74e60c17e4de",
+      "571d68c1d0af74e60c17e4e0",
+      "571d68cdd0af74e60c17e4e1"
+    ]
+  },
+  {
+    "address": "School3Address",
+    "email": "School3@email.com",
+    "_id": "571d911cb7801b5f19da95db",
+    "__v": 0,
+    "students": []
+  },
+  {
+    "__v": 0,
+    "_id": "571d6717d0af74e60c17e4d4",
+    "address": "School2Address",
+    "email": "School2@email.com",
+    "students": [
+      "571d6935d0af74e60c17e4e3",
+      "571d693ed0af74e60c17e4e4"
+    ]
+  }
+]
 ```
+
+###Sponsor Routes
+
+###View Schools
+
+| Option | Value |
+| -------- | -------- |
+| Route | /sponsor/viewschools|
+| Method | GET |
+| Params | NONE  |
+| Post Data | NONE |
+| Usage | localhost:6443/sponsor/viewschools |
+
+
+#####Return Data
