@@ -55,8 +55,9 @@ module.exports = function (params){
         }
         Transaction(newTransaction).save(function(err,transaction){
             if (err) {res.json(err).status(400);return}
-            Student.findOneAndUpdate({_id:req.params.stdid},{$push:{transactions:transaction._id}})
+            Student.findOneAndUpdate({_id:req.params.stdid},{$push:{transactions:transaction._id},$inc:{currentfunds:req.body.amount}})
             .exec(function (err,docs){
+                if(err)res.json(err);
                 Sponsor.findOneAndUpdate({_id:req.params.spnid},{$push:{transactions:transaction._id}})
                 .exec(function (err,docs){
                     if(err)res.json(err);

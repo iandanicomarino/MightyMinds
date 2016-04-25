@@ -5,6 +5,7 @@ module.exports = function (params){
     var School      = params.School;
     var Student     = params.Student;
     var Account      = params.Account;
+    var Transaction =params.Transaction;
     var controllers =[];
 
     controllers.addschool =function (req,res){
@@ -80,7 +81,7 @@ module.exports = function (params){
     }
     controllers.viewstudent = function (req,res){
         var id = req.params.id;
-        Student.findOne({_id:id}).exec(function (err, docs){
+        Student.findOne({_id:id}).populate([{path:'transactions',model:Transaction}]).exec(function (err, docs){
             if (err){console.log(err);return;};
             res.status(200).json(docs);
         })
