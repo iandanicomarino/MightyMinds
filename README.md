@@ -119,7 +119,7 @@ Duplicate Email on Account
 This would require the sponsors's username and password
 
 | Option | Value |
-| - | - |
+| -------- | -------- |
 | Route | /registersponsor|
 | Method | POST |
 | Params | none|
