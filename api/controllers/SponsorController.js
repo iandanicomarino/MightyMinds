@@ -66,5 +66,12 @@ module.exports = function (params){
 
         });
     };
+    controllers.viewtransactions=function (req,res){
+        id=req.params.id
+        Sponsor.findOne({_id:id},{transactions:1}).populate([{path:'transactions',model:Transaction}]).exec(function(err,docs){
+            if(err){res.send("No transactions");return};
+            res.json(docs);
+        })
+    }
     return controllers;
 }
