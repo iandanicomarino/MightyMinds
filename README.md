@@ -13,13 +13,17 @@ No security yet simply for testing
 ###Accessible Routes
 
 Below are routes that are currently usable
-[*Login*](#Login-School-or-Sponsor)
+
+[*Login*](#login-School-or-Sponsor)
+[*Add School*](#add-school)
+[*Add Sponsor*](#add-sponsor)
+
 ####Login School or Sponsor ####
 
 This would require the user's username and password
 
 | Option | Value |
-| - | - |
+| -------- | ------ |
 | Route | /login |
 | Method | POST |
 | Params | none|
