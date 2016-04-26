@@ -14,10 +14,11 @@ No security yet simply for testing
 
 | School | Sponsor | Account |
 | --------- | --------- | ---------- |
-| [*Add Student*](#add-student) | [*View Transactions*](#view-transactions) | [*Login*](#login-school-or-sponsor) |
-| [*Delete Student*](#delete-student) | [*View Schools*](#view-schools) | [*Add School*](#add-school)|
-| [*List Student*](#list-student) | [*Contribute*](#contribute) | [*Add Sponsor*](#register-sponsor)|
-| [*Edit Student*](#edit-student) | [*ViewScholars*](#view-scholars) | &nbsp; |
+| [ Add Student ](#add-student) | [ View Transactions ](#view-transactions) | [ Login ](#login-school-or-sponsor) |
+| [ Delete Student ](#delete-student) | [ View Schools ](#view-schools) | [ Add School ](#add-school)|
+| [ List Student ](#list-student) | [ Contribute ](#contribute) | [ Add Sponsor ](#register-sponsor)|
+| [ Edit Student ](#edit-student) | [ View Scholars ](#view-scholars) | &nbsp; |
+
 
 #ROUTES LIST
 
@@ -84,7 +85,7 @@ This would require the user's username and password
 //if invalid login
 FAIL LOGIN
 ```
-[*Return to available Routes ▲*](#currently-available-routes)
+[Return to available Routes ▲](#currently-available-routes)
 
 ####Add School
 
@@ -119,7 +120,7 @@ This would require the school's username and password
 // possible duplicate of email in either account table or school table
 Duplicate Email on Account
 ```
-[*Return to available Routes ▲*](#currently-available-routes)
+[Return to available Routes ▲](#currently-available-routes)
 
 ####Register Sponsor
 
@@ -156,7 +157,7 @@ This would require the sponsors's username and password
 // possible duplicate of email in either account table or sponsor table
 Duplicate Email on Account
 ```
-[*Return to available Routes ▲*](#currently-available-routes)
+[Return to available Routes ▲](#currently-available-routes)
 
 ###School Routes
 
@@ -198,7 +199,7 @@ This would require the school's id to automatically save the new student to the 
 	Error message 
 ```
 
-[*Return to available Routes ▲*](#currently-available-routes)
+[Return to available Routes ▲](#currently-available-routes)
 
 ####Delete Student
 
@@ -237,7 +238,7 @@ This would require the school's id so that no other school can delete a particul
 //if account deleting failed
 	Nothing Deleted id not existing
 ```
-[*Return to available Routes ▲*](#currently-available-routes)
+[Return to available Routes ▲](#currently-available-routes)
 
 ####List Students
 
@@ -293,7 +294,7 @@ This would require the school's id to determine which school's student do you wa
 //if no students
 null
 ```
-[*Return to available Routes ▲*](#currently-available-routes)
+[Return to available Routes ▲](#currently-available-routes)
 
 ####Edit Student
 
@@ -358,7 +359,7 @@ This would require the student id to determine which student do you want to edit
   }
 ]
 ```
-[*Return to available Routes ▲*](#currently-available-routes)
+[Return to available Routes ▲](#currently-available-routes)
 
 ###Sponsor Routes
 
@@ -406,7 +407,7 @@ This would require the student id to determine which student do you want to edit
   }
 ]
 ```
-[*Return to available Routes ▲*](#currently-available-routes)
+[Return to available Routes ▲](#currently-available-routes)
 
 ###View Transactions
 
@@ -443,7 +444,7 @@ This would require the student id to determine which student do you want to edit
   ]
 }
 ```
-[*Return to available Routes ▲*](#currently-available-routes)
+[Return to available Routes ▲](#currently-available-routes)
 
 ###Contribute
 
@@ -470,7 +471,7 @@ TRANSACTION DONE THANK YOU!// if all values are valid
 No such student exists
 No such sponsor exists //if stdid or spnid is incorrect
 ```
-[*Return to available Routes ▲*](#currently-available-routes)
+[Return to available Routes ▲](#currently-available-routes)
 
 
 ###View Scholars
@@ -533,4 +534,4 @@ No such sponsor exists //if stdid or spnid is incorrect
   }
 ]
 ```
-[*Return to available Routes ▲*](#currently-available-routes)
+[Return to available Routes ▲](#currently-available-routes)
