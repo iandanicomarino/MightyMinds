@@ -17,7 +17,7 @@ No security yet simply for testing
 | [*Add Student*](#add-student) | [*View Transactions*](#view-transactions) | [*Login*](#login-school-or-sponsor) |
 | [*Delete Student*](#delete-student) | [*View Schools*](#view-schools) | [*Add School*](#add-school)|
 | [*List Student*](#list-student) | [*Contribute*](#contribute) | [*Add Sponsor*](#register-sponsor)|
-| [*Edit Student*](#edit-student) | &nbsp; | &nbsp; |
+| [*Edit Student*](#edit-student) | [*ViewScholars*](#view-scholars) | &nbsp; |
 
 #ROUTES LIST
 
@@ -469,5 +469,68 @@ This would require the student id to determine which student do you want to edit
 TRANSACTION DONE THANK YOU!// if all values are valid
 No such student exists
 No such sponsor exists //if stdid or spnid is incorrect
+```
+[*Return to available Routes ▲*](#currently-available-routes)
+
+
+###View Scholars
+
+| Option | Value |
+| -------- | -------- |
+| Route | sponsor/viewscholars/:id|
+| Method | GET |
+| Params | :id (sponsorid) |
+| Post Data | NONE |
+| Usage | /sponsor/viewscholars/571d7eeed0af74e60c17e4e9 |
+
+#####Return Data
+
+```javascript
+[
+  {
+    "student": {
+      "__v": 0,
+      "_id": "571d68c1d0af74e60c17e4e0",
+      "address": "Marikina City",
+      "bio": "stuffs",
+      "currentfunds": 0,
+      "currentschool": "TIP",
+      "email": "nekomarino@gmail.com",
+      "firstname": "Ian",
+      "future": "Programmer",
+      "goal": 15000,
+      "lastname": "Marino",
+      "middlename": "Danico",
+      "suffix": "",
+      "transactions": [
+        "571d811d8d49ad70179d8ab0",
+        "571d81228d49ad70179d8ab1"
+      ]
+    },
+    "_id": "571d811d8d49ad70179d8ab0"
+  },
+  {
+    "student": {
+      "__v": 0,
+      "_id": "571d68c1d0af74e60c17e4e0",
+      "address": "Marikina City",
+      "bio": "stuffs",
+      "currentfunds": 0,
+      "currentschool": "TIP",
+      "email": "nekomarino@gmail.com",
+      "firstname": "Ian",
+      "future": "Programmer",
+      "goal": 15000,
+      "lastname": "Marino",
+      "middlename": "Danico",
+      "suffix": "",
+      "transactions": [
+        "571d811d8d49ad70179d8ab0",
+        "571d81228d49ad70179d8ab1"
+      ]
+    },
+    "_id": "571d81228d49ad70179d8ab1"
+  }
+]
 ```
 [*Return to available Routes ▲*](#currently-available-routes)

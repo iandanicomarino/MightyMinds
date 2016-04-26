@@ -106,5 +106,6 @@ module.exports = function (params){
             res.status(200).json(docs);
         });
     }
+
     return controllers;
 }

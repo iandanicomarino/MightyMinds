@@ -89,5 +89,12 @@ module.exports = function (params){
             res.json(docs);
         })
     }
+
+    controllers.viewscholars = function (req, res) {
+        Transaction.find({sponsor:req.params.id},{student:1}).populate([{path:'student',model:Student}]).exec(function (err,docs){
+            if(err){res.send("No scholars");return};
+            res.json(docs);
+        })
+    }
     return controllers;
 }
