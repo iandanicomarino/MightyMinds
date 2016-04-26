@@ -58,15 +58,30 @@ module.exports = function (params){
             Student.findOneAndUpdate({_id:req.params.stdid},{$push:{transactions:transaction._id},$inc:{currentfunds:req.body.amount}})
             .exec(function (err,docs){
                 if(err)res.json(err);
-                Sponsor.findOneAndUpdate({_id:req.params.spnid},{$push:{transactions:transaction._id}})
-                .exec(function (err,docs){
-                    if(err)res.json(err);
-                    res.send("TRANSACTION DONE THANK YOU!");
-                })
-            });
+                if(docs){
+                    Sponsor.findOneAndUpdate({_id:req.params.spnid},{$push:{transactions:transaction._id}})
+                    .exec(function (err,docs){
+                        if(err)res.json(err);
+                        if(docs){
+                            res.send("TRANSACTION DONE THANK YOU!");
+                        }
+                        else {
+                            Transaction.findOneAndRemove({_id:transaction._id}).exec(function (err,docs){
+                                Student.findOneAndRemove({_id:req.params.stdid}.exec(function (err,docs){
+                                    res.send("No such sponsor exist");
+                                }));
+                            });
+                        }
+                    })}
+                    else {
+                        Transaction.findOneAndRemove({_id:transaction._id}).exec(function (err,docs){
+                            res.send("No such student exist");
+                        });
+                    }
+                });
 
-        });
-    };
+            });
+        };
     controllers.viewtransactions=function (req,res){
         id=req.params.id
         Sponsor.findOne({_id:id},{transactions:1}).populate([{path:'transactions',model:Transaction}]).exec(function(err,docs){

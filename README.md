@@ -12,16 +12,11 @@ No security yet simply for testing
 
 ###Currently Available Routes
 
-
-
-
-
-
 | School | Sponsor | Account |
 | --------- | --------- | ---------- |
-| [*Add Student*](#add-student) | &nbsp; | [*Login*](#login-school-or-Sponsor) |
-| [*Delete Student*](#delete-student) | &nbsp; | [*Add School*](#add-school)|
-| [*List Student*](#list-student) | &nbsp; | [*Add Sponsor*](#register-sponsor)|
+| [*Add Student*](#add-student) | [*View Transactions*](#view-transactions) | [*Login*](#login-school-or-sponsor) |
+| [*Delete Student*](#delete-student) | [*View Schools*](#view-schools) | [*Add School*](#add-school)|
+| [*List Student*](#list-student) | [*Contribute*](#contribute) | [*Add Sponsor*](#register-sponsor)|
 | [*Edit Student*](#edit-student) | &nbsp; | &nbsp; |
 
 #ROUTES LIST
@@ -89,6 +84,7 @@ This would require the user's username and password
 //if invalid login
 FAIL LOGIN
 ```
+[*Return to available Routes ▲*](#currently-available-routes)
 
 ####Add School
 
@@ -123,6 +119,7 @@ This would require the school's username and password
 // possible duplicate of email in either account table or school table
 Duplicate Email on Account
 ```
+[*Return to available Routes ▲*](#currently-available-routes)
 
 ####Register Sponsor
 
@@ -159,6 +156,7 @@ This would require the sponsors's username and password
 // possible duplicate of email in either account table or sponsor table
 Duplicate Email on Account
 ```
+[*Return to available Routes ▲*](#currently-available-routes)
 
 ###School Routes
 
@@ -200,6 +198,8 @@ This would require the school's id to automatically save the new student to the 
 	Error message 
 ```
 
+[*Return to available Routes ▲*](#currently-available-routes)
+
 ####Delete Student
 
 This would require the school's id so that no other school can delete a particular student
@@ -237,6 +237,7 @@ This would require the school's id so that no other school can delete a particul
 //if account deleting failed
 	Nothing Deleted id not existing
 ```
+[*Return to available Routes ▲*](#currently-available-routes)
 
 ####List Students
 
@@ -292,6 +293,7 @@ This would require the school's id to determine which school's student do you wa
 //if no students
 null
 ```
+[*Return to available Routes ▲*](#currently-available-routes)
 
 ####Edit Student
 
@@ -356,6 +358,7 @@ This would require the student id to determine which student do you want to edit
   }
 ]
 ```
+[*Return to available Routes ▲*](#currently-available-routes)
 
 ###Sponsor Routes
 
@@ -371,3 +374,100 @@ This would require the student id to determine which student do you want to edit
 
 
 #####Return Data
+```json
+[
+  {
+    "__v": 0,
+    "_id": "571d670ed0af74e60c17e4d2",
+    "address": "School1Address",
+    "email": "School1@email.com",
+    "students": [
+      "571d67ded0af74e60c17e4de",
+      "571d68c1d0af74e60c17e4e0",
+      "571d68cdd0af74e60c17e4e1"
+    ]
+  },
+  {
+    "address": "School3Address",
+    "email": "School3@email.com",
+    "_id": "571d911cb7801b5f19da95db",
+    "__v": 0,
+    "students": []
+  },
+  {
+    "__v": 0,
+    "_id": "571d6717d0af74e60c17e4d4",
+    "address": "School2Address",
+    "email": "School2@email.com",
+    "students": [
+      "571d6935d0af74e60c17e4e3",
+      "571d693ed0af74e60c17e4e4"
+    ]
+  }
+]
+```
+[*Return to available Routes ▲*](#currently-available-routes)
+
+###View Transactions
+
+| Option | Value |
+| -------- | -------- |
+| Route | /sponsor/viewtransactions/:id/|
+| Method | GET |
+| Params | :id (sponsorid)  |
+| Post Data | NONE |
+| Usage | /sponsor/viewtransactions/5719e906a765ecd91d564430/ |
+
+
+#####Return Data
+```json
+{
+  "_id": "571d7eeed0af74e60c17e4e9",
+  "transactions": [
+    {
+      "student": "571d68c1d0af74e60c17e4e0",
+      "sponsor": "571d7eeed0af74e60c17e4e9",
+      "amount": 5000,
+      "isanon": false,
+      "_id": "571d811d8d49ad70179d8ab0",
+      "__v": 0
+    },
+    {
+      "student": "571d68c1d0af74e60c17e4e0",
+      "sponsor": "571d7eeed0af74e60c17e4e9",
+      "amount": 5000,
+      "isanon": false,
+      "_id": "571d81228d49ad70179d8ab1",
+      "__v": 0
+    }
+  ]
+}
+```
+[*Return to available Routes ▲*](#currently-available-routes)
+
+###Contribute
+
+| Option | Value |
+| -------- | -------- |
+| Route | sponsor/:spnid/contribute/:stdid|
+| Method | GET |
+| Params | :spnid (sponsorid) :stdid (studentid)  |
+| Post Data | NONE |
+| Usage | /sponsor/571d6789d0af74e60c17e4dd/contribute/571d68cdd0af74e60c17e4e1 |
+
+**Suggested Format**
+```json
+{
+    "amount":15000,
+    "isanon":false
+}
+```
+
+#####Return Data
+
+```javascript
+TRANSACTION DONE THANK YOU!// if all values are valid
+No such student exists
+No such sponsor exists //if stdid or spnid is incorrect
+```
+[*Return to available Routes ▲*](#currently-available-routes)
