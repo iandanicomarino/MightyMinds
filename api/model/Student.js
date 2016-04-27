@@ -10,7 +10,7 @@ var Student = mongoose.Schema({
   goal : {type:Number, min:0},
   bio: {type: String, required: true},
   future: {type: String, required: true},
-  currentschool: {type: String, required: true},
+  currentschool: {type:mongoose.Schema.Types.ObjectId, ref:'School'},
   transactions:[{type:mongoose.Schema.Types.ObjectId, ref:'Transaction'}]
 });
 module.exports = mongoose.model('Student',Student);

@@ -84,16 +84,33 @@ module.exports = function (params){
         };
     controllers.viewtransactions=function (req,res){
         id=req.params.id
-        Sponsor.findOne({_id:id},{transactions:1}).populate([{path:'transactions',model:Transaction}]).exec(function(err,docs){
-            if(err){res.send("No transactions");return};
+        Transaction.find({sponsor:id}).populate([{path:'student',model:Student}]).exec(function (err,docs){
+            if(err||!docs){res.send("No transactions");return};
             res.json(docs);
         })
     }
 
     controllers.viewscholars = function (req, res) {
         Transaction.find({sponsor:req.params.id},{student:1}).populate([{path:'student',model:Student}]).exec(function (err,docs){
-            if(err){res.send("No scholars");return};
+            if(err||!docs){res.send("No scholars");return};
             res.json(docs);
+        })
+    }
+
+    controllers.editsponsorinfo = function (req,res){
+        var id = req.params.id;
+        var editsponsor = {
+            password:req.body.password,
+            firstname:req.body.firstname,
+            middlename:req.body.middlename,
+            lastname:req.body.lastname,
+            suffix:req.body.suffix,
+            address:req.body.address,
+            email:req.body.email
+        }
+        Sponsor.findOneAndUpdate({_id:id},editsponsor).exec(function(err,docs){
+            if (err || !docs) {console.log(err);res.status(400).send("Invalid.");return;}
+            res.status(200).json(docs);
         })
     }
     return controllers;

@@ -18,7 +18,7 @@ No security yet simply for testing
 | [ Delete Student ](#delete-student) | [ View Schools ](#view-schools) | [ Add School ](#add-school)|
 | [ List Student ](#list-student) | [ Contribute ](#contribute) | [ Add Sponsor ](#register-sponsor)|
 | [ Edit Student ](#edit-student) | [ View Scholars ](#view-scholars) | &nbsp; |
-
+| [ Edit School ](#edit-school) | [ Edit Sponsor ](#edit-sponsor) | &nbsp; |
 
 #ROUTES LIST
 
@@ -361,6 +361,44 @@ This would require the student id to determine which student do you want to edit
 ```
 [Return to available Routes ▲](#currently-available-routes)
 
+####Edit School
+
+This would require the school id to determine which school do you want to edit
+
+| Option | Value |
+| -------- | -------- |
+| Route | /school/editschoolinfo/:id |
+| Method | POST |
+| Params | :id (for school id)  |
+| Post Data | JSON |
+| Usage | /school/editschoolinfo/57205786ffb2356e21ceb5c7 |
+
+**Suggested Format :**
+
+```json
+{
+    "schoolname":"Just Testing",
+    "address":"Just Testing",
+    "email":"Just Testing"
+}
+```
+
+#####Return Data
+```javascript
+{
+  "username": "4edit",
+  "password": "123456",
+  "address": "School4Address",
+  "email": "School4@email.com",
+  "_id": "57205786ffb2356e21ceb5c7",
+  "__v": 0,
+  "students": []
+}
+```
+[Return to available Routes ▲](#currently-available-routes)
+
+
+
 ###Sponsor Routes
 
 ###View Schools
@@ -533,5 +571,48 @@ No such sponsor exists //if stdid or spnid is incorrect
     "_id": "571d81228d49ad70179d8ab1"
   }
 ]
+```
+[Return to available Routes ▲](#currently-available-routes)
+
+####Edit Sponsor
+
+This would require the sponsor id to determine which sponsor do you want to edit
+
+| Option | Value |
+| -------- | -------- |
+| Route | /school/editsponsorinfo/:id |
+| Method | POST |
+| Params | :id (for sponsor id)  |
+| Post Data | JSON |
+| Usage | /sponsor/editsponsorinfo/57205b5e63226db82242e420 |
+
+**Suggested Format :**
+
+```json
+{
+            "password":"req.body.password",
+            "firstname":"req.body.firstname",
+            "middlename":"req.body.middlename",
+            "lastname":"req.body.lastname",
+            "suffix":"req.body.suffix",
+            "address":"req.body.address",
+            "email":"req.body.email"
+}
+```
+
+#####Return Data
+```javascript
+{
+  "username": "Sponsor4Testing",
+  "password": "123456",
+  "firstname": "Spon",
+  "middlename": "N",
+  "lastname": "Sor",
+  "address": "Marikina City",
+  "email": "sponsor4@email.com",
+  "_id": "57205b5e63226db82242e420",
+  "__v": 0,
+  "transactions": []
+}
 ```
 [Return to available Routes ▲](#currently-available-routes)

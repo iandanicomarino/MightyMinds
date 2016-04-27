@@ -7,5 +7,7 @@ module.exports = function (params){
     router.get('/school/liststudents/:id',ctrl.liststudents);
     router.get('/school/viewstudent/:id',ctrl.viewstudent);
     router.post('/school/editstudent/:id',ctrl.editstudent);
+    router.get('/school/viewtransactions/:id',ctrl.viewtransactions);
+    router.post('/school/editschoolinfo/:id',ctrl.editschoolinfo);
     return router;
 };

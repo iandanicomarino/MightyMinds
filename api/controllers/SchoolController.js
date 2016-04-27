@@ -50,7 +50,7 @@ module.exports = function (params){
             goal :req.body.goal,
             bio:req.body.bio,
             future:req.body.future,
-            currentschool:req.body.currentschool
+            currentschool:id
         }
         Student(newStudent).save(function (err,student){
             if(err){res.json(err);return;};
@@ -75,14 +75,14 @@ module.exports = function (params){
     controllers.liststudents = function (req,res){
         var id = req.params.id;
         School.findOne({_id:id},{students:1}).populate([{path:'students',model:Student}]).exec(function (err, docs){
-            if (err){console.log(err);return;};
+            if (err||!docs){console.log(err);return;};
             res.status(200).json(docs);
         })
     }
     controllers.viewstudent = function (req,res){
         var id = req.params.id;
         Student.findOne({_id:id}).populate([{path:'transactions',model:Transaction}]).exec(function (err, docs){
-            if (err){console.log(err);return;};
+            if (err||!docs){console.log(err);return;};
             res.status(200).json(docs);
         })
     }
@@ -102,10 +102,30 @@ module.exports = function (params){
             currentschool:req.body.currentschool
         }
         Student.findOneAndUpdate({_id:id},editStudent).exec(function (err, docs){
-            if (err){console.log(err);res.status(400).send("Invalid. Make sure email is unique");return;};
+            if (err || !docs){console.log(err);res.status(400).send("Invalid. Make sure email is unique or id is valid");return;};
             res.status(200).json(docs);
         });
     }
-
+    controllers.viewtransactions = function (req,res){
+        var schoolid=req.params.id;
+        console.log(req.params.id);
+            Student.find({$and:[{$where:"this.transactions.length>1"},{currentschool:schoolid}]}).populate([{path:'transactions',model:Transaction}]).exec(function (err,docs){
+                if (err || docs){console.log(err);return;};
+                res.status(200).json(docs);
+            });
+    }
+    controllers.editschoolinfo = function (req,res){
+        var id = req.params.id;
+        var editSchool = {
+            schoolname:req.body.schoolname,
+            address:req.body.address,
+            email:req.body.email,
+            password: req.body.password
+        }
+        School.findOneAndUpdate({_id:id},editSchool).exec(function(err,docs){
+            if (err || !docs) {console.log(err);res.status(400).send("Invalid.");return;}
+            res.status(200).json(docs);
+        })
+    }
     return controllers;
 }

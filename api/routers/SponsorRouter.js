@@ -6,5 +6,6 @@ module.exports = function (params){
     router.post('/sponsor/:spnid/contribute/:stdid',ctrl.contribute);
     router.get('/sponsor/viewtransactions/:id',ctrl.viewtransactions);
     router.get('/sponsor/viewscholars/:id',ctrl.viewscholars);
+    router.post('/sponsor/editsponsorinfo/:id',ctrl.editsponsorinfo);
     return router;
 };
