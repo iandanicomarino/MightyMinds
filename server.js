@@ -1,5 +1,5 @@
 //dependecies
-var isOnline =false;
+var isOnline =true;
 var express= require ('express');
 var bodyparser= require ('body-parser');
 var mongoose = require ('mongoose');
@@ -41,7 +41,7 @@ app.use('/',require('./api/routers/AccountRouter.js')(params));
 
 //app.listen(6443);
 if (isOnline==true){
-    app.listen(6443);
+    app.listen(process.env.PORT);
     console.log("server started online");
 }else {
     console.log("settings:"+settings.isOnline)
