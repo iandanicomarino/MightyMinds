@@ -9,6 +9,7 @@ module.exports = function (params){
     var controllers =[];
 
     controllers.addschool =function (req,res){
+        console.log(req.body);
         var newSchool = {
             username:req.body.username,
             password:req.body.password,
