@@ -39,6 +39,12 @@ app.use('/',require('./api/routers/AccountRouter.js')(params));
 
 
 //app.listen(6443);
-app.listen(process.env.PORT);
-console.log("server started: port 6443")
+if (settings.isOnline==true){
+    app.listen(process.env.PORT);
+    console.log("server started online");
+}else {
+    app.listen(6443);
+    console.log("server started: port 6443")
+};
+
 //server init
