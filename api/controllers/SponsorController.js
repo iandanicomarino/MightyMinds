@@ -10,6 +10,7 @@ module.exports = function (params){
     var controllers =[];
 
     controllers.register= function (req, res){
+        console.log(req.body);
         var newSponsor = {
             username:req.body.username,
             password:req.body.password,
