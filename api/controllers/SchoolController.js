@@ -6,7 +6,7 @@ module.exports = function (params){
     var Student     = params.Student;
     var Account     = params.Account;
     var Transaction =params.Transaction;
-    var bcrypt      =params.Transaction;
+    //var bcrypt      =params.Transaction;
     var controllers =[];
 
     controllers.addschool =function (req,res){
