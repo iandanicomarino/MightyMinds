@@ -14,7 +14,7 @@ module.exports = function (params){
         console.log(req.body);
         Account.findOne({username:username}).exec(function (err,doc){
             if(err  || !doc ){res.status(400).send("FAIL LOGIN");return;};
-            if(bcrypt.compareSync(password,doc.password)){                
+            if(bcrypt.compareSync(password,doc.password)){
                 if (doc.accounttype=="School"){
                     School.findOne({username:username}).exec(function (err,docs){
                         if(err  || !docs ){res.status(400).send("Fail Login");return;};

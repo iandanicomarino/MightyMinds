@@ -136,7 +136,6 @@ module.exports = function (params){
                 if (err || !docs) {console.log(err);res.status(400).send("Invalid.");return;}
                     res.status(200).json(docs);
             });
-
         })
     }
     return controllers;

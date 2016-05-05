@@ -17,7 +17,7 @@ No security yet simply for testing
 | [ Add Student ](#add-student) | [ View Transactions ](#view-transactions) | [ Login ](#login-school-or-sponsor) |
 | [ Delete Student ](#delete-student) | [ View Schools ](#view-schools) | [ Add School ](#add-school)|
 | [ List Student ](#list-student) | [ Contribute ](#contribute) | [ Add Sponsor ](#register-sponsor)|
-| [ Edit Student ](#edit-student) | [ View Scholars ](#view-scholars) | &nbsp; |
+| [ Edit Student ](#edit-student) | [ View Scholars ](#view-scholars) | [Add Admin](#add-admin) |
 | [ Edit School ](#edit-school) | [ Edit Sponsor ](#edit-sponsor) | &nbsp; |
 
 #ROUTES LIST
@@ -159,7 +159,38 @@ Duplicate Email on Account
 ```
 [Return to available Routes ▲](#currently-available-routes)
 
-###School Routes
+
+####Add Admin
+
+This would require the username and password
+
+| Option | Value |
+| -------- | -------- |
+| Route | /addadmin|
+| Method | POST |
+| Params | none|
+| Post Data | JSON or JS Object |
+| Usage | /registersponsor |
+
+**Suggested Format :**
+
+```json
+{
+            "username":"Admin",
+            "password":"123456",
+}
+```
+
+#####Return Data
+```javascript
+//if account was addedd successfully
+	Successful Adding New Admin!
+//if account adding failed
+	Error message 
+
+```
+[Return to available Routes ▲](#currently-available-routes)
+#School Routes
 
 ####Add Student
 
@@ -379,7 +410,8 @@ This would require the school id to determine which school do you want to edit
 {
     "schoolname":"Just Testing",
     "address":"Just Testing",
-    "email":"Just Testing"
+    "email":"Just Testing",
+    "password":"123456"
 }
 ```
 
