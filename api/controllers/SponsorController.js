@@ -27,12 +27,12 @@ module.exports = function (params){
             accounttype:"Sponsor"
         }
         Account(newAccount).save(function (err, account){
-            if(err){res.status(400).json(err);return;};
+             if(err){res.status(400).send("Duplicate Email on Account");return;};
             Sponsor(newSponsor).save(function(err,docs){
                 if(err){
                     Account.findOneAndRemove({_id:account._id}).exec(function(err,doc){
                         console.log(account._id);
-                        res.status(400).send("Duplicate Email on with Sponsor Account");
+                        res.status(400).send("Duplicate Email on Sponsor Account");
                         return;
                     });
                 }else{
