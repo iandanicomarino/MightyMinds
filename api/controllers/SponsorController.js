@@ -8,12 +8,13 @@ module.exports = function (params){
     var Account     = params.Account;
     var Transaction = params.Transaction;
     var controllers =[];
-
+    var bcrypt      =params.bcrypt;
     controllers.register= function (req, res){
         console.log(req.body);
+        var hashed = bcrypt.hashSync(req.body.password);
         var newSponsor = {
             username:req.body.username,
-            password:req.body.password,
+            password:hashed,
             firstname:req.body.firstname,
             middlename:req.body.middlename,
             lastname:req.body.lastname,
@@ -22,7 +23,7 @@ module.exports = function (params){
         }
         var newAccount = {
             username:req.body.username,
-            password:req.body.password,
+            password:hashed,
             accounttype:"Sponsor"
         }
         Account(newAccount).save(function (err, account){
@@ -100,8 +101,9 @@ module.exports = function (params){
 
     controllers.editsponsorinfo = function (req,res){
         var id = req.params.id;
+        var hashed = bcrypt.hashSync(req.body.password);
         var editsponsor = {
-            password:req.body.password,
+            password:hashed,
             firstname:req.body.firstname,
             middlename:req.body.middlename,
             lastname:req.body.lastname,
@@ -109,8 +111,14 @@ module.exports = function (params){
             address:req.body.address,
             email:req.body.email
         }
+        var editSponsorAcct = {
+            password:hashed
+        }
         Sponsor.findOneAndUpdate({_id:id},editsponsor).exec(function(err,docs){
             if (err || !docs) {console.log(err);res.status(400).send("Invalid.");return;}
+            Account.findOneAndUpdate({username:docs.username},editSponsorAcct).exec(function(err,docs){
+                if (err || !docs) {console.log(err);res.status(400).send("Invalid.");return;}
+            });
             res.status(200).json(docs);
         })
     }

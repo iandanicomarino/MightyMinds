@@ -6,21 +6,22 @@ module.exports = function (params){
     var Student     = params.Student;
     var Account     = params.Account;
     var Transaction =params.Transaction;
-    //var bcrypt      =params.Transaction;
+    var bcrypt      =params.bcrypt;
     var controllers =[];
 
     controllers.addschool =function (req,res){
         console.log(req.body);
+        var hashed = bcrypt.hashSync(req.body.password);
         var newSchool = {
             username:req.body.username,
-            password:req.body.password,
+            password:hashed,
             schooolname:req.body.schoolname,
             address:req.body.address,
             email:req.body.email
         }
         var newAccount = {
             username:req.body.username,
-            password:req.body.password,
+            password:hashed,
             accounttype:"School"
         }
          Account(newAccount).save(function (err,account) {
@@ -118,15 +119,24 @@ module.exports = function (params){
     }
     controllers.editschoolinfo = function (req,res){
         var id = req.params.id;
+        var hashed = bcrypt.hashSync(req.body.password);
+        console.log(hashed)
         var editSchool = {
             schoolname:req.body.schoolname,
             address:req.body.address,
             email:req.body.email,
-            password: req.body.password
+            password: hashed
+        }
+        var editSchoolAcct = {
+            password: hashed
         }
         School.findOneAndUpdate({_id:id},editSchool).exec(function(err,docs){
             if (err || !docs) {console.log(err);res.status(400).send("Invalid.");return;}
-            res.status(200).json(docs);
+            Account.findOneAndUpdate({username:docs.username},editSchoolAcct).exec(function(err,docs){
+                if (err || !docs) {console.log(err);res.status(400).send("Invalid.");return;}
+                    res.status(200).json(docs);
+            });
+
         })
     }
     return controllers;
