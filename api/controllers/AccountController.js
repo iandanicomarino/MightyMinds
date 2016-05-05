@@ -20,6 +20,10 @@ module.exports = function (params){
                     return;
                 });
             }
+            else if (doc.accounttype=="Admin") {
+                    res.status(200).json({accounttype:doc.accounttype});
+                    return;
+            }
             else{
                 Sponsor.findOne({$and:[{username:username},{password:password}]}).exec(function (err,docs){
                     if(err ||!docs ){res.status(400).send("Fail Login");return;};

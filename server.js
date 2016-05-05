@@ -1,9 +1,10 @@
 //dependecies
-var isOnline =true;
+var isOnline =false;
 var express= require ('express');
 var bodyparser= require ('body-parser');
 var mongoose = require ('mongoose');
 var settings =require ('./config/settings.js');
+var bcrypt = require ('bcrypt-nodejs')
 var app=express();
 var cors = require('cors');
 var router = express.Router();
@@ -18,6 +19,7 @@ var params=
     Student     :require ('./api/model/Student.js'),
     Account     :require ('./api/model/Account.js'),
     Transaction :require ('./api/model/Transaction.js'),
+    bcrypt      :bcrypt,
     router      :router
 }
 

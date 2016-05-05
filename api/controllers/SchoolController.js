@@ -4,8 +4,9 @@ module.exports = function (params){
     var mongoose    = params.mongoose;
     var School      = params.School;
     var Student     = params.Student;
-    var Account      = params.Account;
+    var Account     = params.Account;
     var Transaction =params.Transaction;
+    var bcrypt      =params.Transaction;
     var controllers =[];
 
     controllers.addschool =function (req,res){
