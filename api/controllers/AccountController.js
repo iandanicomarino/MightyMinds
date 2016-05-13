@@ -6,6 +6,7 @@ module.exports = function (params){
     var Sponsor     = params.Sponsor;
     var Account     = params.Account;
     var bcrypt      = params.bcrypt;
+    var utils       = params.utils;
     var controllers = [];
 
     controllers.login =function (req,res){
@@ -18,18 +19,20 @@ module.exports = function (params){
                 if (doc.accounttype=="School"){
                     School.findOne({username:username}).exec(function (err,docs){
                         if(err  || !docs ){res.status(400).send("Fail Login");return;};
-                        res.status(200).json({result:docs, accounttype:doc.accounttype})
+                        res.status(200).json({result:docs, accounttype:doc.accounttype, token:utils.createToken()})
                         return;
                     });
                 }
                 else if (doc.accounttype=="Admin") {
-                        res.status(200).json({accounttype:doc.accounttype});
+                        console.log(tok);
+                        res.status(200).json({result:docs, accounttype:doc.accounttype, token:utils.createToken()})
                         return;
                 }
                 else{
                     Sponsor.findOne({username:username}).exec(function (err,docs){
                         if(err ||!docs ){res.status(400).send("Fail Login");return;};
-                        res.send({result:docs,accounttype:doc.accounttype}).status(200);
+                        var x = utils.createToken()
+                        res.status(200).json({result:docs, accounttype:doc.accounttype, token:"lol"});
                         return;
                     });
                 }
@@ -52,6 +55,12 @@ module.exports = function (params){
             if(err){res.json(err);return;};
             res.status(200).send("Successful Adding New Admin");
             });
+    }
+    controllers.testToken = function (req,res){
+        console.log("testing token")
+        var tok=utils.createToken();
+        if (tok == "Invalid Token")
+        res.send("Cool stuff bruh")
     }
     return controllers;
 }

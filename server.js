@@ -5,6 +5,8 @@ var bodyparser= require ('body-parser');
 var mongoose = require ('mongoose');
 var settings =require ('./config/settings.js');
 var bcrypt = require ('bcrypt-nodejs')
+var config = require('./config/secrets');
+var utils = require('./api/utils/utils-functions.js');
 var app=express();
 var cors = require('cors');
 var router = express.Router();
@@ -19,7 +21,9 @@ var params=
     Student     :require ('./api/model/Student.js'),
     Account     :require ('./api/model/Account.js'),
     Transaction :require ('./api/model/Transaction.js'),
+    Token       :require ('./api/model/Token.js'),
     bcrypt      :bcrypt,
+    utils       :utils,
     router      :router
 }
 
@@ -42,11 +46,10 @@ app.use('/',require('./api/routers/AccountRouter.js')(params));
 
 
 //app.listen(6443);
-if (isOnline==true){
+if (config.ONLINE==true){
     app.listen(process.env.PORT);
     console.log("server started online");
 }else {
-    console.log("settings:"+settings.isOnline)
     app.listen(6443);
     console.log("server started: port 6443")
 };
