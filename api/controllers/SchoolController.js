@@ -15,7 +15,7 @@ module.exports = function (params){
         var newSchool = {
             username:req.body.username,
             password:hashed,
-            schooolname:req.body.schoolname,
+            schoolname:req.body.schoolname,
             address:req.body.address,
             email:req.body.email
         }
