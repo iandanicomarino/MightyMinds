@@ -24,10 +24,10 @@ module.exports = function (params){
             password:hashed,
             accounttype:"School"
         }
-         Account(newAccount).save(function (err,account) {
-             if(err){res.status(400).send("Duplicate Email on Account");return;};
-             School(newSchool).save(function(err,school){
-                 if (err){
+        Account(newAccount).save(function (err,account) {
+            if(err){res.status(400).send("Duplicate Email on Account");return;};
+            School(newSchool).save(function(err,school){
+                if (err){
                     Account.findOneAndRemove({_id:account._id}).exec(function(err,doc){
                         console.log(account._id);
                         res.status(400).send("Duplicate Email on with School Account");
@@ -36,9 +36,9 @@ module.exports = function (params){
                 }else{
                     res.status(200).send("Success Sending New School!");
                 }
-             });
+            });
 
-         });
+        });
     };
     controllers.addstudent =function (req,res){
         var id = req.params.id;
@@ -76,15 +76,32 @@ module.exports = function (params){
         })
     }
     controllers.liststudents = function (req,res){
+
+        // var pageOptions = {
+        //     page: req.query.page || 0;
+        //     limit:req.query.limit || 10;
+        // }
+
         var id = req.params.id;
-        School.findOne({_id:id},{students:1}).populate([{path:'students',model:Student}]).exec(function (err, docs){
-            if (err||!docs){console.log(err);return;};
+        School.findOne({_id:id},{students:1})
+        //.skip(pageOptions.page*pageOptions.limit)
+        //.limit(pageOptions.limit)
+        .populate({
+            path:'students',
+            model:Student,
+            populate:{
+                path:'currentschool',
+                model:School
+            }
+        }).exec(function (err, docs){
+            console.log(docs);
+            if (err||!docs){console.log(err+"imhere");res.json({status:"Failed"});return;};
             res.status(200).json(docs);
         })
     }
     controllers.viewstudent = function (req,res){
         var id = req.params.id;
-        Student.findOne({_id:id}).populate([{path:'transactions',model:Transaction}]).exec(function (err, docs){
+        Student.findOne({_id:id}).populate([{path:'transactions',model:Transaction},{path:'currentschool',model:School}]).exec(function (err, docs){
             if (err||!docs){console.log(err);return;};
             res.status(200).json(docs);
         })
@@ -112,10 +129,10 @@ module.exports = function (params){
     controllers.viewtransactions = function (req,res){
         var schoolid=req.params.id;
         console.log(req.params.id);
-            Student.find({$and:[{$where:"this.transactions.length>1"},{currentschool:schoolid}]}).populate([{path:'transactions',model:Transaction}]).exec(function (err,docs){
-                if (err || docs){console.log(err);return;};
-                res.status(200).json(docs);
-            });
+        Student.find({$and:[{$where:"this.transactions.length>1"},{currentschool:schoolid}]}).populate([{path:'transactions',model:Transaction}]).exec(function (err,docs){
+            if (err || docs){console.log(err);return;};
+            res.status(200).json(docs);
+        });
     }
     controllers.editschoolinfo = function (req,res){
         var id = req.params.id;
@@ -134,7 +151,7 @@ module.exports = function (params){
             if (err || !docs) {console.log(err);res.status(400).send("Invalid.");return;}
             Account.findOneAndUpdate({username:docs.username},editSchoolAcct).exec(function(err,docs){
                 if (err || !docs) {console.log(err);res.status(400).send("Invalid.");return;}
-                    res.status(200).json(docs);
+                res.status(200).json(docs);
             });
         })
     }
