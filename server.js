@@ -1,9 +1,10 @@
 //dependecies
-var isOnline =false;
+
 var express= require ('express');
 var bodyparser= require ('body-parser');
 var mongoose = require ('mongoose');
 var settings =require ('./config/settings.js');
+var config =require ('./config/secrets.js');
 var bcrypt = require ('bcrypt-nodejs')
 var app=express();
 var cors = require('cors');
@@ -40,13 +41,13 @@ app.use('/',require('./api/routers/AccountRouter.js')(params));
 //server actions
 
 
-
+var isOnline= config.ONLINE;
 //app.listen(6443);
 if (isOnline==true){
     app.listen(process.env.PORT);
     console.log("server started online");
 }else {
-    console.log("settings:"+settings.isOnline)
+    
     app.listen(6443);
     console.log("server started: port 6443")
 };
