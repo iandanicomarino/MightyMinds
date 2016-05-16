@@ -1,5 +1,5 @@
 module.exports = {
-     ONLINE: false,
+     ONLINE: true,
      CLAIMS : {
          issuer: 'api.mightyminds.org',
          audience: 'mightyminds.org'
