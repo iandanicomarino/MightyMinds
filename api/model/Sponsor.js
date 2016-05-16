@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Sponsor = mongoose.Schema({
   username:{type: String, require:true, unique:true},
-  password:{type: String, require:true, select:false},
+  password:{type: String, require:true},
   firstname:{type: String, require:true},
   middlename:{type: String},
   lastname:{type: String, require:true},
