@@ -1,7 +1,7 @@
-  
+
 #MightyMinds API
 
-This program is under development 
+This program is under development
 
 ##Technology Used
 MEAN Stack (MongoDB, Express, Angular, Nodejs)
@@ -116,7 +116,7 @@ This would require the school's username and password
 //if account was addedd successfully
 	Success Sending New School!
 //if account adding failed
-	Error message 
+	Error message
 // possible duplicate of email in either account table or school table
 Duplicate Email on Account
 ```
@@ -153,7 +153,7 @@ This would require the sponsors's username and password
 //if account was addedd successfully
 	Success Sending New Sponsor!
 //if account adding failed
-	Error message 
+	Error message
 // possible duplicate of email in either account table or sponsor table
 Duplicate Email on Account
 ```
@@ -170,7 +170,7 @@ This would require the username and password
 | Method | POST |
 | Params | none|
 | Post Data | JSON or JS Object |
-| Usage | /registersponsor |
+| Usage | /addadmin |
 
 **Suggested Format :**
 
@@ -186,7 +186,7 @@ This would require the username and password
 //if account was addedd successfully
 	Successful Adding New Admin!
 //if account adding failed
-	Error message 
+	Error message
 
 ```
 [Return to available Routes ▲](#currently-available-routes)
@@ -212,7 +212,7 @@ This would require the school's id to automatically save the new student to the 
 	"lastname" : "Ent4",
 	"middlename": "D",
 	"suffix":"",
-	"address":"student4Address",	
+	"address":"student4Address",
 	"email":"student4@email.com", //must be unique
 	"currentfunds": 0,
 	"goal" :15000,
@@ -227,7 +227,7 @@ This would require the school's id to automatically save the new student to the 
 //if account was addedd successfully
 	Successful
 //if account adding failed
-	Error message 
+	Error message
 ```
 
 [Return to available Routes ▲](#currently-available-routes)
